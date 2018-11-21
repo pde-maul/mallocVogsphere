@@ -82,7 +82,7 @@ void					*search_large(void *ptr, t_pages *head);
 /*
 ** REALLOC.c
 */
-void					*realloc(void *ptr, size_t size);
+void					*ft_realloc(void *ptr, size_t size);
 void					*find_page(void *ptr, t_pages *head, size_t size);
 void					*find_ptr(void *ptr, t_pages *curr_p, size_t size);
 void					*if_conditions(size_t size, t_base_node *curr_n,
