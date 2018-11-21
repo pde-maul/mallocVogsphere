@@ -48,13 +48,13 @@ size_t					get_optimal_size(size_t chunk_size, char letter);
 void					*do_malloc(t_pages *curr_p,
 						t_base_node *node, size_t size);
 void					*find_spot(t_pages *current_page, size_t size);
-char					check_between_nodes(t_pages *curr_p, size_t size);
+void					*check_between_nodes(t_pages *curr_p, size_t size);
 void					*add_node_pages(t_pages *current_page, size_t size);
 void					*large_malloc(size_t size, t_pages *head);
 void					*check_space(size_t size, t_pages *head);
 void					*check_size(size_t size);
 void					*init_large_page(size_t size, t_pages **head);
-void					*malloc(size_t size);
+void					*ft_malloc(size_t size);
 void					ft_putstr(char const *s);
 char					*ft_strcpy(char *dest, const char *src);
 
@@ -73,7 +73,7 @@ void					print_mid(t_base_node *current_node, int *i);
 ** FREEE.c
 */
 
-void					free(void *ptr);
+void					ft_free(void *ptr);
 void					*search_not_large(void *ptr, t_pages *head);
 void					find_node(void *ptr, t_pages *curr_p,
 						int size_of_page, t_pages *prev_p);

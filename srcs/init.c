@@ -27,14 +27,16 @@ void	*init_pages(size_t size, t_pages **head)
 {
 	t_pages *real;
 
-	*head = new_mmap(size, 's');
+	int chunk_size;
+	chunk_size = (size <= TINY) ? TINY : SMALL;
+	*head = new_mmap(chunk_size, 's');
 	if (*head == NULL)
 		return (NULL);
 	real = *head;
 	real->head = (t_base_node *)((void *)real + sizeof(t_pages));
 	real->head->next = NULL;
 	real->head->is_free = 1;
-	real->head->size = (size <= TINY) ? TINY : SMALL;
+	real->head->size = chunk_size;
 	real->aval_mem = get_optimal_size(size, 's') - sizeof(t_pages);
 	real->free_count = 0;
 	real->next = NULL;

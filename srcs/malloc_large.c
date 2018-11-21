@@ -37,7 +37,7 @@ void	*large_malloc(size_t size, t_pages *head)
 		if (curr_p->head->is_free == 1 && curr_p->head->size >= size)
 		{
 			curr_p->head->is_free = 0;
-			return (curr_p->head);
+			return ((void*)curr_p->head + sizeof(t_base_node));
 		}
 		if (curr_p->next == NULL)
 			break ;
@@ -51,7 +51,7 @@ void	*large_malloc(size_t size, t_pages *head)
 	curr_p->head->is_free = 0;
 	curr_p->head->size = size;
 	curr_p->next = NULL;
-	return (curr_p->head);
+	return ((void*)curr_p->head + sizeof(t_base_node));
 }
 
 void	*find_large(void *ptr, size_t size)

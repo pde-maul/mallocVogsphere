@@ -14,7 +14,7 @@
 
 t_holder	*g_holder_head = NULL;
 
-void	*malloc(size_t size)
+void	*ft_malloc(size_t size)
 {
 	if (size <= 0 || size == __UINT64_MAX__)
 		return (NULL);
@@ -55,14 +55,17 @@ void	*check_size(size_t size)
 void	*check_space(size_t size, t_pages *head)
 {
 	t_pages *current_page;
+	void	*hold;
 
 	current_page = head;
 	while (current_page)
 	{
-		if (current_page->free_count > 0 &&
-		check_between_nodes(current_page, size) == 1)
-			return (find_spot(current_page, size));
-		else if (current_page->aval_mem >= (size + sizeof(t_base_node)))
+		if (current_page->free_count > 0)
+		{	
+			if ((hold = check_between_nodes(current_page, size)) != NULL)
+				return (hold);
+		}
+		if (current_page->aval_mem >= (size + (sizeof(t_base_node) * 2)))
 			return (find_spot(current_page, size));
 		if (current_page->next == NULL)
 			break ;
@@ -73,7 +76,10 @@ void	*check_space(size_t size, t_pages *head)
 
 void	*add_node_pages(t_pages *current_page, size_t size)
 {
-	current_page->next = new_mmap(size, 's');
+	int chunk_size;
+
+	chunk_size = (size <= TINY) ? TINY : SMALL;
+	current_page->next = new_mmap(chunk_size, 's');
 	if (current_page->next == NULL)
 		return (NULL);
 	current_page = current_page->next;
@@ -82,7 +88,7 @@ void	*add_node_pages(t_pages *current_page, size_t size)
 	+ sizeof(t_pages));
 	current_page->free_count = 0;
 	current_page->head->is_free = 1;
-	current_page->head->size = (size <= TINY) ? TINY : SMALL;
+	current_page->head->size = chunk_size;
 	current_page->head->next = NULL;
 	current_page->next = NULL;
 	return (find_spot(current_page, size));

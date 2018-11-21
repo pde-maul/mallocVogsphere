@@ -12,18 +12,21 @@
 
 #include "../includes/malloc.h"
 
-char	check_between_nodes(t_pages *curr_p, size_t size)
+void	*check_between_nodes(t_pages *curr_p, size_t size)
 {
 	t_base_node *node;
 
 	node = curr_p->head;
 	while (node)
 	{
-		if (node->is_free == 1 && size <= node->size)
-			return (1);
+		if (node->is_free == 1 && node->next != NULL && size <= node->size)
+		{
+			node->is_free = 0;
+			return ((void *)node + sizeof(t_base_node));
+		}
 		node = node->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 size_t	get_optimal_size(size_t chunk_size, char letter)
@@ -59,13 +62,10 @@ void	*find_spot(t_pages *current_page, size_t size)
 	t_base_node *malloc_node;
 
 	malloc_node = current_page->head;
-	while (malloc_node)
-	{
-		if (malloc_node->is_free == 1 && size <= malloc_node->size)
-			return (do_malloc(current_page, malloc_node, size));
+	while (malloc_node->next != NULL)
 		malloc_node = malloc_node->next;
-	}
-	return (NULL);
+	return (do_malloc(current_page, malloc_node, size));
+	
 }
 
 void	ft_putstr(char const *s)

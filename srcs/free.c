@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../includes/malloc.h"
 
-void	free(void *ptr)
+void	ft_free(void *ptr)
 {
 	if (!g_holder_head || ptr == NULL)
 		return ;
@@ -43,9 +43,10 @@ void	*search_large(void *ptr, t_pages *head)
 	prev_p = head;
 	while (curr_p)
 	{
-		if (ptr == curr_p->head)
+		if (ptr == (void*)curr_p->head + sizeof(t_base_node))
 		{
 			curr_p->head->is_free = 1;
+			// ft_putstr("here Large\n");
 			if (curr_p == prev_p)
 				return (NULL);
 			else
@@ -73,7 +74,7 @@ void	*search_not_large(void *ptr, t_pages *head)
 	get_optimal_size(TINY, 's') : get_optimal_size(SMALL, 's');
 	while (curr_p)
 	{
-		if ((long)ptr >= (long)curr_p && (long)ptr < size_of_page
+		if ((long)ptr >= (long)curr_p && (long)ptr < size_of_page 
 		+ (long)curr_p)
 		{
 			find_node(ptr, curr_p, size_of_page, prev_p);
@@ -98,6 +99,7 @@ int size_of_page, t_pages *prev_p)
 	{
 		if ((void*)curr_n + sizeof(t_base_node) == ptr)
 		{
+			// ft_putstr("here\n");
 			curr_n->is_free = 1;
 			curr_p->free_count += 1;
 		}

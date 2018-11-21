@@ -19,9 +19,9 @@ void	*realloc(void *ptr, size_t size)
 	if (!g_holder_head)
 		return (NULL);
 	if (ptr == NULL)
-		return (malloc(size));
+		return (ft_malloc(size));
 	else if (size == 0)
-		free(ptr);
+		ft_free(ptr);
 	else
 	{
 		ret = find_page(ptr, g_holder_head->tiny, size);
@@ -80,9 +80,9 @@ void	*dumb_realloc(size_t size, void *ptr)
 {
 	void *retmalloc;
 
-	retmalloc = malloc(size);
+	retmalloc = ft_malloc(size);
 	ft_strcpy(retmalloc, ptr);
-	free(ptr);
+	ft_free(ptr);
 	return (retmalloc);
 }
 
