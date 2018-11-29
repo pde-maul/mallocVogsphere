@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:16:57 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/11/29 14:43:05 by jaylor           ###   ########.fr       */
+/*   Updated: 2018/11/29 14:56:03 by pde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_holder	*g_holder_head = NULL;
 
-void	*ft_malloc(size_t size)
+void	*malloc(size_t size)
 {
 	if (size <= 0 || size == __UINT64_MAX__)
 		return (NULL);

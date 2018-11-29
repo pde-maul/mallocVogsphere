@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:16:57 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/11/29 14:42:27 by jaylor           ###   ########.fr       */
+/*   Updated: 2018/11/29 14:55:14 by pde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-void	ft_free(void *ptr)
+void	free(void *ptr)
 {
 	if (!g_holder_head || ptr == NULL)
 		return ;

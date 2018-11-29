@@ -6,7 +6,7 @@
 /*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 09:10:04 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/11/20 11:42:00 by pde-maul         ###   ########.fr       */
+/*   Updated: 2018/11/29 15:09:56 by pde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # define TINY 64
-# define SMALL 1064
+# define SMALL 1024
 # define MALLOC_PER_PAGE 100
 
 typedef struct			s_base_node{
@@ -54,7 +54,7 @@ void					*large_malloc(size_t size, t_pages *head);
 void					*check_space(size_t size, t_pages *head);
 void					*check_size(size_t size);
 void					*init_large_page(size_t size, t_pages **head);
-void					*ft_malloc(size_t size);
+void					*malloc(size_t size);
 void					ft_putstr(char const *s);
 char					*ft_strcpy(char *dest, const char *src);
 
@@ -73,7 +73,7 @@ void					print_mid(t_base_node *current_node, int *i);
 ** FREEE.c
 */
 
-void					ft_free(void *ptr);
+void					free(void *ptr);
 void					*search_not_large(void *ptr, t_pages *head);
 void					find_node(void *ptr, t_pages *curr_p,
 						int size_of_page, t_pages *prev_p);
@@ -82,7 +82,7 @@ void					*search_large(void *ptr, t_pages *head);
 /*
 ** REALLOC.c
 */
-void					*ft_realloc(void *ptr, size_t size);
+void					*realloc(void *ptr, size_t size);
 void					*find_page(void *ptr, t_pages *head, size_t size);
 void					*find_ptr(void *ptr, t_pages *curr_p, size_t size);
 void					*if_conditions(size_t size, t_base_node *curr_n,

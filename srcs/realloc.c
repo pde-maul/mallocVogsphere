@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   realloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:16:57 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/11/29 14:44:15 by jaylor           ###   ########.fr       */
+/*   Updated: 2018/11/29 14:56:39 by pde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-void	*ft_realloc(void *ptr, size_t size)
+void	*realloc(void *ptr, size_t size)
 {
 	void *ret;
 
 	if (!g_holder_head)
 		return (NULL);
 	if (ptr == NULL)
-		return (ft_malloc(size));
+		return (malloc(size));
 	else if (size == 0)
-		ft_free(ptr);
+		free(ptr);
 	else
 	{
 		ret = find_page(ptr, g_holder_head->tiny, size);
@@ -80,9 +80,9 @@ void	*dumb_realloc(size_t size, void *ptr)
 {
 	void *retmalloc;
 
-	retmalloc = ft_malloc(size);
+	retmalloc = malloc(size);
 	ft_strcpy(retmalloc, ptr);
-	ft_free(ptr);
+	free(ptr);
 	return (retmalloc);
 }
 

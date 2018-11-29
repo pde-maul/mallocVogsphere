@@ -11,10 +11,10 @@
 //      for (size_t i = 0; i < MAX_ALLOC; i++) {
 //          array[i] = ft_malloc(len);
 //          memset(array[i], 'a', len);
-// 		 ft_realloc(array[i], len + len);
+// 		 realloc(array[i], len + len);
 //      }
 //      for (size_t i = 0; i < MAX_ALLOC; i++) {
-//          ft_free(array[i]);
+//          free(array[i]);
 //      }
 //  }
 // }
@@ -29,11 +29,11 @@ int main(void)
      {
          array[i] = ft_malloc(len);
          memset(array[i], 'a', len);
-         array[i] = ft_realloc(array[i],len + 1);
+         array[i] = realloc(array[i],len + 1);
      }
     //  for (ssize_t i = MAX_ALLOC - 1; i >= 0; i--)
     //  { // ssize_t cause we check on >= 0 which is always rue on unsigned type
-    //      ft_free(array[i]);
+    //      free(array[i]);
     //  }
  }
     //  show_alloc_mem();
@@ -53,7 +53,7 @@ int main(void)
 //      }
 //      for (size_t i = 0; i < MAX_ALLOC; i++)
 //      {
-//          ft_free(array[i]);
+//          free(array[i]);
 //      }
 //  }
 //  show_alloc_mem();
@@ -69,7 +69,7 @@ int main(void)
 //      {
 //          void *addr = ft_malloc(len);
 //          memset(addr, 'a', len);
-//          ft_free(addr);
+//          free(addr);
 //      }
 //  }
 // }
@@ -78,7 +78,7 @@ int main(void)
 //  void *addr = ft_malloc(64);
 //  memset(addr, 'a', 64);
 //  show_alloc_mem();
-//  ft_free(addr);
+//  free(addr);
 //  show_alloc_mem();
 // }
 
@@ -94,14 +94,14 @@ int main(void)
 //     addr1 = (char *)ft_malloc(16 * M);
 //     strcpy(addr1, "Bonjours\n");
 //     print(addr1);
-//     addr3 = (char *)ft_realloc(addr1, 128 * M);
+//     addr3 = (char *)realloc(addr1, 128 * M);
 //     addr3[127 * M] = 42;
 //     print(addr3);
 // 	show_alloc_mem();
-// 	ft_free(addr1 + 12);
+// 	free(addr1 + 12);
 
 // 	show_alloc_mem();
-// 	ft_free(addr3);
+// 	free(addr3);
 // 	show_alloc_mem();
 //     return (0);
 // }
@@ -116,9 +116,9 @@ int main(void)
 // 	char *addr;
 
 // 	addr = ft_malloc(16);
-// 	ft_free(NULL);
-// 	ft_free((void *)addr + 5);
-// 	if (ft_realloc((void *)addr + 5, 10) == NULL)
+// 	free(NULL);
+// 	free((void *)addr + 5);
+// 	if (realloc((void *)addr + 5, 10) == NULL)
 // 		print("Bonjours\n");
 // }
 
@@ -139,7 +139,7 @@ int main(void)
 // 	strcpy(addr1, "Bonjours\n");
 // 	print(addr1);
 // 	addr2 = (char*)ft_malloc(16*M);
-// 	addr3 = (char*)ft_realloc(addr1, 128*M);
+// 	addr3 = (char*)realloc(addr1, 128*M);
 // 	addr3[127*M] = 42;
 // 	print(addr3);
 // 	return (0);
@@ -160,7 +160,7 @@ int main(void)
 // 	addr1 = (char*)ft_malloc(16*M);
 // 	strcpy(addr1, "Bonjours\n");
 // 	print(addr1);
-// 	addr3 = (char*)ft_realloc(addr1, 128*M);
+// 	addr3 = (char*)realloc(addr1, 128*M);
 // 	addr3[127*M] = 42;
 // 	print(addr3);
 // 	return (0);
