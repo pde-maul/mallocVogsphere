@@ -3,7 +3,6 @@ ifeq ($(HOSTTYPE),)
 endif
 
 NAME		= libft_malloc_$(HOSTTYPE).so
-# NAME = ft_malloc
 CC 			= gcc
 
 SRC			= 	malloc.c \
@@ -28,7 +27,6 @@ $(OBJ_PATH)%.o: srcs/%.c
 $(NAME): $(OBJ)
 	@rm -f libft_malloc.so
 	@$(CC) -shared -fPIC -o $(NAME) $(OBJ)
-	# @ $(CC)  -o $(NAME) $(OBJ)
 	@ln -s $(NAME) libft_malloc.so
 	@echo "\033[33;32m [✓] $(NAME) is ready" "\x1b[31m <3"
 
