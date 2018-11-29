@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:16:57 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/10/19 15:04:29 by pde-maul         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:42:27 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	*search_large(void *ptr, t_pages *head)
 		if (ptr == (void*)curr_p->head + sizeof(t_base_node))
 		{
 			curr_p->head->is_free = 1;
-			// ft_putstr("here Large\n");
 			if (curr_p == prev_p)
 				return (NULL);
 			else
@@ -74,7 +73,7 @@ void	*search_not_large(void *ptr, t_pages *head)
 	get_optimal_size(TINY, 's') : get_optimal_size(SMALL, 's');
 	while (curr_p)
 	{
-		if ((long)ptr >= (long)curr_p && (long)ptr < size_of_page 
+		if ((long)ptr >= (long)curr_p && (long)ptr < size_of_page
 		+ (long)curr_p)
 		{
 			find_node(ptr, curr_p, size_of_page, prev_p);
@@ -99,7 +98,6 @@ int size_of_page, t_pages *prev_p)
 	{
 		if ((void*)curr_n + sizeof(t_base_node) == ptr)
 		{
-			// ft_putstr("here\n");
 			curr_n->is_free = 1;
 			curr_p->free_count += 1;
 		}

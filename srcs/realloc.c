@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   realloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:16:57 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/10/19 15:04:51 by pde-maul         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:44:15 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,24 +90,25 @@ void	*if_conditions(size_t size, t_base_node *curr_n,
 void *ptr, t_pages *curr_p)
 {
 	if (size <= curr_n->size)
-		return (dumb_realloc(size, ptr));
-	if (curr_n->next == NULL)
+		return (ptr);
+	if (curr_n->next->size == 0 && curr_p->aval_mem
+	>= size - curr_n->size + sizeof(t_base_node))
 	{
-		if (curr_p->aval_mem > size - curr_n->size)
-		{
-			curr_p->aval_mem -= size - curr_n->size;
-			curr_n->size = size;
-			return (ptr);
-		}
-		return (dumb_realloc(size, ptr));
+		curr_p->aval_mem -= size - curr_n->size;
+		curr_n->size = size;
+		curr_n->next = (void*)ptr + size;
+		curr_n = curr_n->next;
+		curr_n->is_free = 1;
+		curr_n->size = 0;
+		curr_n->next = NULL;
+		return (ptr);
 	}
-	if (curr_n->next->is_free == 1 && size <=
-	curr_n->size + curr_n->next->size)
+	if (curr_n->next->is_free == 1 &&
+	curr_n->next->size >= size - curr_n->size)
 	{
 		curr_n->size = size;
 		curr_n->next = curr_n->next->next;
 		return (ptr);
 	}
-	else
-		return (dumb_realloc(size, ptr));
+	return (dumb_realloc(size, ptr));
 }

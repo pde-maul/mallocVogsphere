@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 12:57:50 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/10/19 13:36:10 by pde-maul         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:45:15 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	*find_spot(t_pages *current_page, size_t size)
 	while (malloc_node->next != NULL)
 		malloc_node = malloc_node->next;
 	return (do_malloc(current_page, malloc_node, size));
-	
 }
 
 void	ft_putstr(char const *s)

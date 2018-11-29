@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:16:57 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/10/19 15:32:21 by pde-maul         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:43:05 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	*check_space(size_t size, t_pages *head)
 	while (current_page)
 	{
 		if (current_page->free_count > 0)
-		{	
+		{
 			if ((hold = check_between_nodes(current_page, size)) != NULL)
 				return (hold);
 		}
@@ -105,7 +105,7 @@ void	*do_malloc(t_pages *curr_p, t_base_node *node, size_t size)
 	node->next = final + size;
 	node = node->next;
 	node->is_free = 1;
-	node->size = (size <= TINY) ? TINY : SMALL;
+	node->size = 0;
 	node->next = NULL;
 	return (final);
 }

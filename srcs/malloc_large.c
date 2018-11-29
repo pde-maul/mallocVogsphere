@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_large.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 12:56:50 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/10/19 13:32:04 by pde-maul         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:47:30 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*find_large(void *ptr, size_t size)
 	curr = g_holder_head->large;
 	while (curr)
 	{
-		if (ptr == curr->head)
+		if (ptr == (void*)curr->head + sizeof(t_base_node))
 			return (dumb_realloc(size, ptr));
 		else
 			curr = curr->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-maul <pde-maul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 12:58:25 by pde-maul          #+#    #+#             */
-/*   Updated: 2018/10/19 13:35:34 by pde-maul         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:44:55 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	*init_holder(void)
 
 void	*init_pages(size_t size, t_pages **head)
 {
-	t_pages *real;
+	t_pages	*real;
+	int		chunk_size;
 
-	int chunk_size;
 	chunk_size = (size <= TINY) ? TINY : SMALL;
 	*head = new_mmap(chunk_size, 's');
 	if (*head == NULL)
